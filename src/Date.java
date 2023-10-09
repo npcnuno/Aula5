@@ -59,21 +59,20 @@ public class Date {
             return false;
         if (ano < 0)
             return false;
-        if (dia < 1 || dia > nrDiasMes(mes, ano))
+        if (dia < 1 || dia > nrDiasMes())
             return false;
         return true;
     }
 
-    private int nrDiasMes(int mes, int ano) {
+    private int nrDiasMes() {
         int[] diasPorMes = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        if (mes == 2 && anoBissexto(ano)) {
+        if (this.mes == 2 && anoBissexto()) {
             return 29;
         }
         return diasPorMes[mes];
     }
-
-    private boolean anoBissexto(int ano) {
-        return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
+    private boolean anoBissexto() {
+        return (this.ano % 4 == 0 && this.ano % 100 != 0) || (this.ano % 400 == 0);
     }
 
     public Date diaSeguinte() {
@@ -81,7 +80,7 @@ public class Date {
         int novoMes = mes;
         int novoAno = ano;
 
-        if (novoDia > nrDiasMes(novoMes, novoAno)) {
+        if (novoDia > nrDiasMes()) {
             novoDia = 1;
             novoMes++;
             if (novoMes > 12) {
